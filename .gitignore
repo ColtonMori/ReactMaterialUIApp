@@ -4,6 +4,8 @@
 /node_modules
 /dist
 
+/components
+/actions
 /src
 
 # testing
