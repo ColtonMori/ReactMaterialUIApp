@@ -1,132 +1,136 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import Background from './images/bg.jpg';
-import Grid from 'material-ui/Grid';
-import jsonData from './jsonDataSource/EmailTemplate.json';
-
+import React from "react";
+import Paper from "material-ui/Paper";
+import TextField from "material-ui/TextField";
+import Button from "material-ui/Button";
+import IntlMessages from "util/IntlMessages";
+import MenuItem from "material-ui/Menu/MenuItem";
+import DateFormatInput from "material-ui-next-datepicker";
+import { Link } from "react-router-dom";
+import { DatePicker } from "material-ui-pickers";
+import IconButton from "material-ui/IconButton";
+import Background from "./images/bg.jpg";
+import logo from "./kretahub-mock-icon.png";
+import Radio from "material-ui/Radio";
 const divStyle = {
-  overflowY: 'scroll',
-  border: '1px solid red',
-  width: '100%',
-  float: 'center',
-  height: '100%',
-  position: 'relative',
+  width: "100%",
+  height: "100%",
   backgroundColor: "#494c50",
-  valign: "top",
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
+  backgroundSize: "cover",
+  backgroundPosition: "center",
   backgroundImage: `url(${Background})`,
-  position: 'relative'
+  position: "relative"
 };
-const styles = theme => ({
-  root: theme
-    .mixins
-    .gutters({
-      paddingTop: 16,
-      paddingBottom: 16,
-      marginTop: theme.spacing.unit * 3,
-      width: '45%',
-      top: '50%',
-      left: '50%',
-      marginRight: '-50%',
-      transform: `translate(-50%, -50%)`,
-      position: 'absolute'
-    })
-});
-const label = {
-  /* Other styling.. */
-  textAlign: 'right',
-  clear: 'both',
-  float: 'left',
-  marginRight: '15px'
-}
 
-function PaperSheet(props) {
-  const {classes} = props;
-  return (
-    <div style={divStyle}>
+class EmailTemplate extends React.Component {
+  nextRoute = () => {
+    this.props.history.push({
+      pathname: "default",
+      state: {
+        key: this.state
+      }
+    });
+  };
 
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <div className="text-center">
-        <p style={{
-          color: 'white'
-        }} className="text-center">{jsonData[0].heading}</p>
-        <Paper className={classes.root} elevation={4}>
-          <h1 className="h1 display-1 text-center">{jsonData[0].subHeading}
-          </h1>
-          <br/>
-          <Typography component="p" style={{
-            fontWeight: 'bold'
-          }}>
-            Shipper Information
-          </Typography>
-          <div class="form-group">
-            <label for="Student">Name:
-            </label>
-            <label style={{
-              marginLeft: '20px'
-            }} name="Student">{jsonData[0].userName}</label>
-            <br/>
-            <label for="Student">Email:
-            </label>
-            <label style={{
-              marginLeft: '20px'
-            }} name="Student">{jsonData[0].userEmail}</label>
+  componentWillMount() {
+    document.title = "Shipper Dashboard - KretaHub";
+  }
+  render() {
+    return (
+      <div style={divStyle}>
+        <div className="container-fluid h-100 align-middle">
+          <div className="row h-100 justify-content-center align-items-center flex-column ">
+            <img src={logo} width="40px" className="mb-2" />
+            <Paper>
+              <div className="container-fluid">
+                <div className="font-weight-bold pt-3 text-center">
+                  <h1>Your Shipper Signup Request is Being Processed</h1>
+                </div>
+                <div className="jr-card-header pt-3">
+                  <h2>Thank you for signing up as a shipper on KretaHub.</h2>
+                </div>
+                <div className="jr-card-header pt-3">
+                  <h3 className="font-weight-bold">Shipper Information</h3>
+                  <div className="row">
+                    <div className="col-sm-4">Name:</div>
+                    <div className="col-sm-8">PT. Indotech</div>
+                    <div className="col-sm-4">Email</div>
+                    <div className="col-sm-8">indotech@gmail.com</div>
+                  </div>
+                  <p>
+                    We will notify you by email when your request has been
+                    approved.
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ backgroundColor: "#a1a1a1" }} className="mt-2">
+                <div className="row">
+                  <div className="col-6 mx-auto">
+                    {/* <div className="text-center text-white">
+                      In the mean time, you can follow us on:
+                    </div> */}
+                  </div>
+                </div>
+              </div>
+            </Paper>
+            <div className="row mt-2">
+              <div className="col mx-auto text-light">
+                <div className="text-center">
+                  <div className="">
+                    <ul className="social-link p-1">
+                      <li>
+                        <IconButton
+                          color="inherit"
+                          onClick={() => {
+                            this.props.showAuthLoader();
+                            this.props.userFacebookSignIn();
+                          }}
+                        >
+                          <i className="zmdi zmdi-facebook" />
+                        </IconButton>
+                      </li>
+                      <li>
+                        <IconButton
+                          color="inherit"
+                          onClick={() => {
+                            this.props.showAuthLoader();
+                            this.props.userTwitterSignIn();
+                          }}
+                        >
+                          <i className="zmdi zmdi-twitter" />
+                        </IconButton>
+                      </li>
+                      <li>
+                        <IconButton
+                          color="inherit"
+                          onClick={() => {
+                            this.props.showAuthLoader();
+                            this.props.userInstagramSignIn();
+                          }}
+                        >
+                          <i className="zmdi zmdi-instagram" />
+                        </IconButton>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col mt-2">
+                <a
+                  className="text-success"
+                  href="https://kretahub-im1.firebaseapp.com/Email/Pending.html"
+                >
+                  Next
+                </a>
+              </div>
+            </div>
           </div>
-          {/* <div class="form-group">
-            <label for="Student">Email:  </label>
-            <label style={{marginLeft:'20px'}} name="Student">UmerSaleem@gmail.com</label>
-          </div> */}
-
-          <Typography component="label">
-            {jsonData[0].conformNote}
-          </Typography>
-          <br/>
-          <Typography component="p">
-            {jsonData[0].followUs}
-          </Typography>
-          <br/>
-          <footer
-            className="text-center"
-            style={{
-            backgroundColor: '#F3F3F3',
-            alignContent: 'center'
-          }}>
-            <a
-              style={{
-              marginLeft: '5px',
-              color: '#20B0A8'
-            }}
-              href='www.raqamisolutions.com'>Facebook</a>
-            <a
-              style={{
-              marginLeft: '20px',
-              color: '#20B0A8'
-            }}href='www.raqamisolutions.com'>Instagram</a>
-            <a
-              style={{
-              marginLeft: '20px',
-              color: '#20B0A8'
-            }}
-              href='www.raqamisolutions.com'>Twitter</a>
-          </footer>
-        </Paper>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-PaperSheet.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(PaperSheet);
+export default EmailTemplate;

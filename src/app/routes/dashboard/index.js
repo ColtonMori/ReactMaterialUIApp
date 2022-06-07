@@ -9,6 +9,10 @@ const Dashboard = ({match}) => (
             <Route path={`${match.url}/default`} component={asyncComponent(() => import('./routes/Default'))}/>
             <Route path={`${match.url}/freightSearch`} component={asyncComponent(() => import('./routes/Default/frieghtQuoteSearch'))}/>
             <Route path={`${match.url}/freightDetail`} component={asyncComponent(() => import('./routes/Default/frieghtQuoteDetail'))}/>
+            <Route path={`${match.url}/thankyou`} component={asyncComponent(() => import('./routes/Default/thankYou'))}/>
+            <Route path={`${match.url}/packinglist`} component={asyncComponent(() => import('./routes/Default/packinglist'))}/>
+            <Route path={`${match.url}/rows`} component={asyncComponent(() => import('./routes/Default/rows'))}/>
+            <Route path={`${match.url}/mainthankyou`} component={asyncComponent(() => import('./routes/Default/mainthankyou'))}/>
             <Route path={`${match.url}/eCommerce`} component={asyncComponent(() => import('./routes/ECommerce'))}/>
             <Route path={`${match.url}/news`} component={asyncComponent(() => import('./routes/News'))}/>
             <Route path={`${match.url}/intranet`} component={asyncComponent(() => import('./routes/Intranet'))}/>

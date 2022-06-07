@@ -1,0 +1,27 @@
+[
+    {
+        "id": "DAC",
+        "sector_name": "Consumer Discretionary",
+        "industry_name": "Automobile Components",
+        "industries": [
+            "Automobile Components",
+            "Automobiles",
+            "Distributors",
+            "Diversified Consumer Services",
+            "Hotels",
+            "Household Durables",
+            "Internet & Catalog Retail",
+            "Leisure Products",
+            "Media",
+            "Multiline Retail",
+            "Specialty Retail",
+            "Textile",
+            "Beverages",
+            "Food & Staples Retailing",
+            "Food Products",
+            "Household Products",
+            "Personal Products",
+            "Tobacco"
+        ]
+    }
+]

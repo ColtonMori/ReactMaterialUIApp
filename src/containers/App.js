@@ -45,6 +45,17 @@ import PendingTemplate from './PendingTemplate'
 import BookingConform from './BookingConform'
 import ThankYou from './ThankYou'
 import OrderConformation from './OrderConformation'
+import DownPayment from './DownPayment'
+import DeliveryNotice from './DeliveryNotice'
+import ATANotice from './ATANotice'
+import PaymentRequired from './PaymentRequired'
+import PackingList from './PackingList'
+import OrderPending from './OrderPending'
+import FullPayment from './FullPayment'
+import FullPaymentReceive from './FullPaymentReceive'
+import Pending from './Pending'
+import FreightArrived from './Freight Arrived'
+import ReactSelect from './ReactSelect'
 import {setInitUrl} from '../actions/Auth';
 
 const RestrictedRoute = ({component: Component, ...rest, authUser}) =>
@@ -164,16 +175,29 @@ class App extends Component {
                     locale={currentAppLocale.locale}
                     messages={currentAppLocale.messages}
                 >
+                
                     <div className="app-main">
-                        <RestrictedRoute path={`${match.url}app`} authUser={authUser} component={MainApp}/>
+                         <RestrictedRoute path={`${match.url}app`} authUser={authUser} component={MainApp}/>
+                        <Route path='/reactselect' component={ReactSelect}/>
                         <Route path='/signin' component={SignIn}/>
                         <Route path='/signup' component={SignUp}/>
-                        <Route path='/thankYou' component={EmailTemplate}/>
                         <Route path='/pending' component={PendingTemplate}/>
                         <Route path='/approval' component={ApprovalTemplate}/>
                         <Route path='/mainthankyou' component={ThankYou}/>
+                        <Route path='/pendingpage' component={Pending}/>
                         <Route path='/bookingconform' component={BookingConform}/>
+                        <Route path='/downpayment' component={DownPayment}/>
                         <Route path='/orderconformation' component={OrderConformation}/>
+                        <Route path='/deliverynotice' component={DeliveryNotice}/>
+                        <Route path='/atanotice' component={ATANotice}/>
+                        <Route path='/paymentrequired' component={PaymentRequired}/>
+                        <Route path='/packinglist' component={PackingList}/>
+                        <Route path='/orderpending' component={OrderPending}/>
+                        <Route path='/fullpayment' component={FullPayment}/>
+                        <Route path='/fullpaymentreceive' component={FullPaymentReceive}/>
+                        <Route path='/thankyou' component={EmailTemplate}/>
+                        <Route path='/freightarrived' component={FreightArrived}/>
+                        {/* <Route path='/thankYou' component={() => window.location = 'https://project-7-9fe4b.firebaseapp.com/#/app/dashboard/thankyou'}/> */}
                     </div>
                 </IntlProvider>
             </MuiThemeProvider>
